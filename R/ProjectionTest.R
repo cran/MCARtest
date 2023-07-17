@@ -14,6 +14,7 @@
 #' \insertRef{BS2022}{MCARtest}
 #'
 #' @importFrom stats rmultinom
+#' @importFrom Rcpp evalCpp
 #'
 #' @examples
 #' bS=matrix(c(1,1,0, 1,0,1, 0,1,1),byrow=TRUE,ncol=3) # Our canonical 3d example
@@ -29,19 +30,28 @@
 #'
 #' ProjectionTest(pSh,nS,bS,M,99)
 
-ProjectionTest=function(pSh,nS,bS,M,B){
-  A=Amatrix(bS,M)
-  TestProg=RindexDual(pSh,bS,M)
-  TestStat=TestProg[[1]]; Projp=TestProg[[2]]
-  ProjpS=(A%*%Projp)/(1-TestStat)
-  pSboot=matrix(0, nrow=B, ncol=length(pSh))
-  for(S in 1:nrow(bS)){
-    MS=M[bS[S,]==1]
-    start=row_index(bS,M,S,rep(1,sum(bS[S,]))); end=row_index(bS,M,S,MS)
-    probS=ProjpS[start:end]
-    XSboot=t(rmultinom(B,size=nS[S],prob=probS)/nS[S])
-    pSboot[,start:end]=XSboot
+ProjectionTest <- function(pSh, nS, bS, M, B) {
+  TestProg = RindexDual(pSh, bS, M)
+  TestStat = TestProg[[1]]
+  Projp = TestProg[[2]]
+
+  ProjpS <- margProj(Projp, c(t(bS)), M) / (1 - TestStat)
+  szs <- infoS2(c(t(bS)), M)
+
+  stat <- 1;
+  for (i in 1:B) {
+    boot = numeric(length(pSh))
+    cur = 1;
+    for (j in 1:nrow(bS)) {
+      probS = ProjpS[cur:(cur+szs[j]-1)]
+      boot[cur:(cur+szs[j]-1)] = t(rmultinom(1, size = nS[j], prob = probS)/nS[j])
+      cur = cur + szs[j]
+    }
+    bootStat = RindexDual(boot, bS, M)
+    if (bootStat[[1]] >= TestStat) {
+      stat <- stat + 1
+    }
   }
-  TestStatboot=apply(X=pSboot,MARGIN=1,Rindex,bS=bS,M=M)
-  return(list(sum((TestStat<=TestStatboot)/(B+1)),TestStat))
+
+  return(list(stat / (B + 1), TestStat))
 }
