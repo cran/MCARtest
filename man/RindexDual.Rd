@@ -13,9 +13,9 @@ RindexDual(pS, bS, M, lp_solver = "default", simplex_strategy = 4)
 
 \item{M}{A vector of positive integers giving the alphabet sizes of the discrete variables.}
 
-\item{lp_solver}{An argument passed to HiGHS specifying which solver to use. See \insertCite{highs;textual}{MCARtest} for more detail.}
+\item{lp_solver}{An argument passed to HiGHS specifying which solver to use.}
 
-\item{simplex_strategy}{An argument passed to HiGHS specifying which solver to use. See \insertCite{highs;textual}{MCARtest} for more detail.}
+\item{simplex_strategy}{An argument passed to HiGHS specifying which solver to use.}
 }
 \value{
 The value of \eqn{R()}, in the interval \eqn{[0,1]}.
@@ -43,6 +43,4 @@ rbind(pS,as.vector(A\%*\%linprog[[2]])/(1-linprog[[1]]))
 }
 \references{
 \insertRef{BS2022}{MCARtest}
-
-\insertRef{highs}{MCARtest}
 }

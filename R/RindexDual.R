@@ -7,8 +7,8 @@
 #' @param pS A sequence of probability mass functions on the marginal spaces.
 #' @param bS A binary matrix specifying the set of observation patterns. Each row encodes a single pattern.
 #' @param M A vector of positive integers giving the alphabet sizes of the discrete variables.
-#' @param lp_solver An argument passed to HiGHS specifying which solver to use. See \insertCite{highs;textual}{MCARtest} for more detail.
-#' @param simplex_strategy An argument passed to HiGHS specifying which solver to use. See \insertCite{highs;textual}{MCARtest} for more detail.
+#' @param lp_solver An argument passed to HiGHS specifying which solver to use.
+#' @param simplex_strategy An argument passed to HiGHS specifying which solver to use.
 #'
 #' @return The value of \eqn{R()}, in the interval \eqn{[0,1]}.
 #' @return The optimal solution to the linear program
@@ -16,7 +16,6 @@
 #'
 #' @references
 #' \insertRef{BS2022}{MCARtest}
-#' \insertRef{highs}{MCARtest}
 #'
 #' @importFrom highs highs_solve
 #'

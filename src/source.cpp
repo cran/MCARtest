@@ -4,6 +4,11 @@
 
 using namespace Rcpp;
 
+//' Generates the row indices used internally to generate the sparse matrix A.
+//'
+//' @param bS A binary matrix specifying the set of observation patterns. Each row encodes a single pattern.
+//' @param M A vector of positive integers giving the alphabet sizes of the discrete variables.
+//' @return A vector of row indices.
 // [[Rcpp::export]]
 std::vector<unsigned long long> aMatrixSparseRevLex(std::vector<int>& bS, std::vector<int>& M) {
   int d = M.size();
@@ -58,6 +63,11 @@ std::vector<unsigned long long> aMatrixSparseRevLex(std::vector<int>& bS, std::v
   return A;
 }
 
+//' Calculates the total cardinality of the sample spaces.
+//'
+//' @param bS A binary matrix specifying the set of observation patterns. Each row encodes a single pattern.
+//' @param M A vector of positive integers giving the alphabet sizes of the discrete variables.
+//' @return The total cardinality.
 // [[Rcpp::export]]
 unsigned long long infoS(std::vector<int>& bS, std::vector<int>& M) {
   unsigned long long ans = 0;
@@ -77,6 +87,11 @@ unsigned long long infoS(std::vector<int>& bS, std::vector<int>& M) {
   return ans;
 }
 
+//' Calculates the individual cardinalities of the sample spaces.
+//'
+//' @param bS A binary matrix specifying the set of observation patterns. Each row encodes a single pattern.
+//' @param M A vector of positive integers giving the alphabet sizes of the discrete variables.
+//' @return A vector of individual cardinalities.
 // [[Rcpp::export]]
 std::vector<unsigned long long> infoS2(std::vector<int>& bS, std::vector<int>& M) {
   int d = M.size();
@@ -94,6 +109,11 @@ std::vector<unsigned long long> infoS2(std::vector<int>& bS, std::vector<int>& M
   return szs;
 }
 
+//' Generates the column indices used internally to generate the sparse matrix A.
+//'
+//' @param cardS The number of missingness patterns.
+//' @param cardChi The cardinality of the full joint space.
+//' @return A vector of column indices.
 // [[Rcpp::export]]
 std::vector<unsigned long long> colVector(unsigned long long cardS, unsigned long long cardChi) {
   std::vector<unsigned long long> v(cardS * cardChi, 0);
@@ -105,6 +125,12 @@ std::vector<unsigned long long> colVector(unsigned long long cardS, unsigned lon
   return v;
 }
 
+//' Internal function multiplying a mass function by the sparse matrix A.
+//' 
+//' @param p A subprobability mass function on the full joint space.
+//' @param bS A binary matrix specifying the set of observation patterns. Each row encodes a single pattern.
+//' @param M A vector of positive integers giving the alphabet sizes of the discrete variables.
+//' @return A collection of marginal mass functions.
 // [[Rcpp::export]]
 std::vector<double> margProj(std::vector<double>& p, std::vector<int>& bS, std::vector<int>& M) {
   unsigned long long cardS = bS.size() / M.size();
