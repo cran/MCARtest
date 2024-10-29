@@ -1,6 +1,6 @@
-bc20f04b052f3b230f83518b3ad8e796 *DESCRIPTION
+76c391bfd403489d984b8a0fa64a1997 *DESCRIPTION
 1f6a067de54ba68642c43190793bc663 *LICENSE
-89f2290366d82ded15236aa01fb26d41 *NAMESPACE
+fe1b387c4497eb7f66eb9c54850f9919 *NAMESPACE
 55d8f96e9b7beb255acc72dd7195d12b *R/Amatrix.R
 1b42bff292c45184eb93e8d5db647174 *R/AmatrixSparse.R
 6f79fc5366a46154220ddbd7a06a69ba *R/Cimproved.R
@@ -23,12 +23,12 @@ bd10ae828c641bc47432cddf0a69c650 *R/EquivalenceClass.R
 9663476b44fc9c639c013902cc085144 *R/col_index.R
 1bb54f63d4f133df507121289b475fcd *R/computeR.R
 ab089cd2a799826fd102f3f8677c5e75 *R/compute_av.R
-37ec59d368af5aada499ae7b73b2e63e *R/get_SigmaS.R
+49638c83f501444f8ce933b620006da5 *R/get_SigmaS.R
 8f5817678d63431435cb7faf7f44ecce *R/little_test.R
 753ba4bd4acf690ac15c8928781335fc *R/loglik0.R
 2190c6b8f6af6e995c055361a0ceeec7 *R/loglik1.R
 683f465c8e54083fc66e70e57c41b4bd *R/row_index.R
-470ddbc55017f43783afeaf955929fd1 *build/partial.rdb
+27a9ebeac56fef416c196c805d59aa7d *build/partial.rdb
 d941a2ca198ce16f666c8d1d8be56b4d *inst/REFERENCES.bib
 97ab000e1df6dec46d60e3a5d59ef0d0 *man/Amatrix.Rd
 d7883ed4640c4e708a35265f0ecfe43d *man/AmatrixSparse.Rd
@@ -53,7 +53,7 @@ d064f6d088005e59d168f6d14bdf0fe7 *man/colVector.Rd
 2f28b2a994c722ff1aba78d149c87112 *man/col_index.Rd
 eed62e6d78069bddc2623881f7fb77e7 *man/computeR.Rd
 abee6068105caa3db5e7efeeb767f7fb *man/compute_av.Rd
-05e86ad60c5679a2dd4c1eaa35e0ae51 *man/get_SigmaS.Rd
+26aff123b2bfdeed5115a37709ec2558 *man/get_SigmaS.Rd
 3c7e731a160276794fecc54824465df0 *man/infoS.Rd
 eda277a5e5ec9b3a7bd0e2e049340282 *man/infoS2.Rd
 a1a6d166491df72cf7ec1490862dda95 *man/little_test.Rd

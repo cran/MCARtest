@@ -21,13 +21,11 @@
 #' @references \insertRef{BB2024}{MCARtest}
 #'
 #' @importFrom pracma sqrtm
-#' @importFrom misty na.indicator
 #' @importFrom stats cov2cor var
 #'
 #' @examples
 #' library(copula)
 #' library(missMethods)
-#' library(misty)
 #' n = 1000
 #'
 #' cp = claytonCopula(param = c(1), dim = 5)
@@ -43,7 +41,7 @@ get_SigmaS = function(X){
   #### create vector with indicators of NA's
   d = dim(X)[2]
   v = 1:d
-  pattern_indicator = unique(na.indicator(X))
+  pattern_indicator = unique(apply(X, 2L, function(y) as.numeric(1-is.na(y))))
   n_pattern = dim(pattern_indicator)[1]
 
   ### create sequence of patterns e.g. c(2,3) if d=3 and just X1 is missing
@@ -53,7 +51,7 @@ get_SigmaS = function(X){
   }
 
   ### add a column to X, corresponding to the pattern of missingness
-  tmp = na.indicator(X)
+  tmp = apply(X, 2L, function(y) as.numeric(1-is.na(y)))
   extra_col = numeric(length = dim(tmp)[1])
   for (row in 1:dim(tmp)[1]){
     extra_col[row] = paste(v[as.logical(tmp[row,])], collapse = "")

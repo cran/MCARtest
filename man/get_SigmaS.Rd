@@ -36,7 +36,6 @@ for a dataset with missing values.
 \examples{
 library(copula)
 library(missMethods)
-library(misty)
 n = 1000
 
 cp = claytonCopula(param = c(1), dim = 5)
